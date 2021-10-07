@@ -269,10 +269,6 @@ export default {
 
                 let isNewBlock = typeof this.activeBlock.id == 'undefined'
 
-                if (!isNewBlock) {
-                    this.draggableEnded = true
-                }
-
                 const target = currentTarget.target
                 const bounds = target.getBoundingClientRect()
 
@@ -287,7 +283,11 @@ export default {
                         target.style.transform = this.activeBlock.prevTransform;
                     }
                 }
-                this.redrawBlockArrows()
+
+                if (!isNewBlock) {
+                    this.draggableEnded = true
+                    this.redrawBlockArrows()
+                }
             }
 
             this.scene_config.draggable = true
